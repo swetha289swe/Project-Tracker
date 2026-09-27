@@ -1,0 +1,23 @@
+
+{
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.indexing": true,
+    "python.analysis.autoImportUserSymbols": true,
+    "python.analysis.packageIndexDepths": [[ "", 2 ]],
+    "python.languageServer": "Pylance",
+    "[python]": {
+              "editor.codeActionsOnSave": {
+                "source.fixAll.ruff": "explicit",
+                "source.organizeImports.ruff": "explicit"
+              }
+            }
+}   
+
+// {
+//     "[python]": {
+//       "editor.codeActionsOnSave": {
+//         "source.fixAll.ruff": "explicit",
+//         "source.organizeImports.ruff": "explicit"
+//       }
+//     }
+//   }   
