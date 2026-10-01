@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_serializer
 
 
 class UserCreate(BaseModel):
@@ -35,3 +35,18 @@ class Token(BaseModel):
 class UserRoleUpdate(BaseModel):
     email: EmailStr
     role: str | None
+
+class UserListByRole(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    full_name:str
+    email : EmailStr
+    role: str
+
+    @field_serializer("role")
+    def serialize_role(self, role: str) -> str:
+        return role.lower()
+
+class UserbyName(BaseModel):
+    full_name : str
+    email: EmailStr
