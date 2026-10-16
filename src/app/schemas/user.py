@@ -3,6 +3,8 @@ from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_serializer
 
+from app.schemas.common import Pagination
+
 
 class UserCreate(BaseModel):
     email: EmailStr
@@ -26,11 +28,23 @@ class UserRead(BaseModel):
     created_at: datetime
     password_hash: str
     role:str
+class UserDetails(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
 
+    id: uuid.UUID
+    email: EmailStr
+    full_name: str
+    is_active: bool
+    created_at: datetime
+    role:str
 
 class Token(BaseModel):
+    userDet: UserDetails
     access_token: str
     token_type: str = "bearer"
+
+class MessageResponse(BaseModel):
+    message: str
 
 class UserRoleUpdate(BaseModel):
     email: EmailStr
@@ -50,3 +64,6 @@ class UserListByRole(BaseModel):
 class UserbyName(BaseModel):
     full_name : str
     email: EmailStr
+
+class PaginatedUsers(Pagination[UserRead]):
+    pass

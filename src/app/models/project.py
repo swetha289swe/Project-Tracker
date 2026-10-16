@@ -18,6 +18,9 @@ class MemberRole(str, enum.Enum):
     owner = "owner"
     editor = "editor"
     viewer = "viewer"
+    developer = "developer"
+    admin = "admin"
+    tester = "tester"
 
 
 class Project(Base):
